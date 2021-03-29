@@ -1,11 +1,14 @@
 package juc;
 
+import java.util.Collections;
 import java.util.concurrent.Exchanger;
 import java.util.concurrent.atomic.LongAdder;
 
 public class ExchangerTest {
 
     private final static Exchanger<String> exchanger = new Exchanger<>();
+
+    private final static ThreadLocal<String> a = new ThreadLocal<>();
 
     public static void main(String[] args) {
         new Thread(() -> {
