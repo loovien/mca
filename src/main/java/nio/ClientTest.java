@@ -15,8 +15,32 @@ public class ClientTest {
             System.out.println("connected failure");
             System.exit(1);
         }
-        int write = socketChannel.write(ByteBuffer.wrap("hello world".getBytes()));
+        int write = socketChannel.write(ByteBuffer.wrap("hello world\n".getBytes()));
         System.out.println("write to remote socket: " + write);
+        new Thread(() -> {
+            ByteBuffer data = ByteBuffer.allocate(1024);
+            try {
+                do {
+                    int read = socketChannel.read(data);
+                    if (read > 0) {
+                        byte[] bytes = new byte[read];
+                        data.flip();
+                        data.get(bytes);
+                        System.out.println("receive from server: " + new String(bytes));
+                        data.compact();
+                    } else {
+                        socketChannel.close();
+                    }
+                } while (true);
+            } catch (IOException e) {
+                e.printStackTrace();
+                try {
+                    socketChannel.close();
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+            }
+        }).start();
 
         Scanner scanner = new Scanner(System.in);
         while (true) {

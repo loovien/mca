@@ -41,44 +41,61 @@ class NIOSvr {
         while (true) {
             System.out.println("current size: " + selector.select());
             Set<SelectionKey> selectionKeys = selector.selectedKeys();
-            Iterator<SelectionKey> iterator = selectionKeys.iterator();
+            for (SelectionKey selectionKey : selectionKeys) {
+                selectionKeys.remove(selectionKey);
+                if (selectionKey.isAcceptable()) {
+                    register(selectionKey);
+                }
+                if (selectionKey.isReadable()) {
+                    read(selectionKey);
+                }
+            }
+            /*Iterator<SelectionKey> iterator = selectionKeys.iterator();
             while (iterator.hasNext()) {
                 SelectionKey selectionKey = iterator.next();
                 iterator.remove();
                 if (selectionKey.isAcceptable()) {
-                    try {
-                        // SocketChannel client = serverSocketChannel.accept();
-                        ServerSocketChannel serv = (ServerSocketChannel) selectionKey.channel();
-                        SocketChannel client = serv.accept();
-                        System.out.println("client connect: " + client.getRemoteAddress());
-                        client.configureBlocking(false);
-                        client.register(selector, SelectionKey.OP_READ);
-                        System.out.println(client.isRegistered());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        selectionKey.cancel();
-                    }
+                    register(selectionKey);
                 }
                 if (selectionKey.isReadable()) {
-                    System.out.println("xxx");
-                    SocketChannel channel = (SocketChannel) selectionKey.channel();
-                    ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
-                    try {
-                        int length = channel.read(byteBuffer);
-                        if (length > 0) {
-                            byte[] data = new byte[length];
-                            byteBuffer.flip();
-                            byteBuffer.get(data);
-                            System.out.println("receive from client: " + new String(data));
-                            byteBuffer.clear();
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        channel.close();
-                        break;
-                    }
+                    read(selectionKey);
                 }
+            }*/
+        }
+    }
+
+    private void read(SelectionKey selectionKey) throws IOException {
+        System.out.println("xxx");
+        SocketChannel channel = (SocketChannel) selectionKey.channel();
+        ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
+        try {
+            int length = channel.read(byteBuffer);
+            if (length > 0) {
+                byte[] data = new byte[length];
+                byteBuffer.flip();
+                byteBuffer.get(data);
+                System.out.println("receive from client: " + new String(data));
+                byteBuffer.compact();
+                channel.write(ByteBuffer.wrap(data));
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+            channel.close();
+        }
+    }
+
+    private void register(SelectionKey selectionKey) {
+        try {
+            // SocketChannel client = serverSocketChannel.accept();
+            ServerSocketChannel serv = (ServerSocketChannel) selectionKey.channel();
+            SocketChannel client = serv.accept();
+            System.out.println("client connect: " + client.getRemoteAddress());
+            client.configureBlocking(false);
+            client.register(selector, SelectionKey.OP_READ);
+            System.out.println(client.isRegistered());
+        } catch (IOException e) {
+            e.printStackTrace();
+            selectionKey.cancel();
         }
     }
 
