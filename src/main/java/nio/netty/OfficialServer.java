@@ -3,10 +3,7 @@ package nio.netty;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufUtil;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelInboundHandlerAdapter;
-import io.netty.channel.ChannelInitializer;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
@@ -30,7 +27,9 @@ public class OfficialServer {
                             }
                         });
                     }
-                }).bind(new InetSocketAddress("0.0.0.0", 8889)).sync();
+                }).childOption(ChannelOption.SO_KEEPALIVE, true)
+                .childOption(ChannelOption.SO_BACKLOG, 10)
+                .bind(new InetSocketAddress("0.0.0.0", 8889)).sync();
         sync.channel().closeFuture().sync();
     }
 }

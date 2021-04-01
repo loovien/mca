@@ -13,7 +13,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 
 import java.net.InetSocketAddress;
 
-public class OfficalClient {
+public class OfficialClient {
     public static void main(String[] args) throws InterruptedException {
         ChannelFuture connect = new Bootstrap().group(new NioEventLoopGroup(1))
                 .channel(NioSocketChannel.class)
