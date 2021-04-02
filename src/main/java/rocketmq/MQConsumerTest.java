@@ -12,8 +12,8 @@ public class MQConsumerTest {
 
     public static void main(String[] args) throws MQClientException, IOException {
         DefaultMQPushConsumer defaultMQPushConsumer = new DefaultMQPushConsumer("demo-csm");
-        // defaultMQPushConsumer.setNamesrvAddr("192.168.163.184:9876");
-        defaultMQPushConsumer.setNamesrvAddr("localhost:9876");
+         defaultMQPushConsumer.setNamesrvAddr("192.168.163.184:9876");
+        // defaultMQPushConsumer.setNamesrvAddr("localhost:9876");
         defaultMQPushConsumer.subscribe("TopicTest", "*");
 
         defaultMQPushConsumer.registerMessageListener((MessageListenerConcurrently) (list, consumeConcurrentlyContext) -> {
