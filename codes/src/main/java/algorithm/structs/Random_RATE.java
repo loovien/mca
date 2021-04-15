@@ -8,7 +8,7 @@ import java.util.Arrays;
  * @created: 4/15/2021 2:27 PM
  */
 public class Random_RATE {
-    private static int times = 1000_000;
+    private static final int times = 1000_000;
 
     public static void test() {
 
@@ -56,14 +56,15 @@ public class Random_RATE {
     public static void main(String[] args) {
 
         int count = 0;
+        double K = 0.6;
         for (int i = 0; i < times; i++) {
-            if (balance() == 1) {
+            if (doubleRandom() <= K) {
                 count++;
             }
         }
 
         System.out.println("testResult: " + (double) count / (double) times);
-        System.out.println("distResult: " + 0.5);
+        System.out.println("distResult: " + K);
 
 
     }
@@ -134,5 +135,11 @@ public class Random_RATE {
         return a == 1 ? 1 : 0;*/
 
     }
+
+    // ================================
+    public static double doubleRandom() {
+        return Math.random(); // + Math.random();
+    }
+
 }
 

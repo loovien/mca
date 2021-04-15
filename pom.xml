@@ -8,9 +8,9 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <parent>
-        <artifactId>spring-boot-parent</artifactId>
         <groupId>org.springframework.boot</groupId>
-        <version>2.3.9.RELEASE</version>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.4.4</version>
         <relativePath/>
     </parent>
     <modules>
@@ -26,77 +26,9 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
-<<<<<<< HEAD
-    <dependencies>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.18</version>
-            <optional>true</optional>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/cglib/cglib -->
-        <dependency>
-            <groupId>cglib</groupId>
-            <artifactId>cglib</artifactId>
-            <version>3.3.0</version>
-        </dependency>
 
-        <dependency>
-            <groupId>commons-codec</groupId>
-            <artifactId>commons-codec</artifactId>
-            <version>1.15</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
-        <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-all</artifactId>
-            <version>4.1.60.Final</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.rocketmq</groupId>
-            <artifactId>rocketmq-client</artifactId>
-            <version>4.8.0</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/org.apache.zookeeper/zookeeper -->
-        <dependency>
-            <groupId>org.apache.zookeeper</groupId>
-            <artifactId>zookeeper</artifactId>
-            <version>3.6.2</version>
-        </dependency>
-
-
-        <!--        <dependency>-->
-        <!--            <groupId>io.lettuce</groupId>-->
-        <!--            <artifactId>lettuce-core</artifactId>-->
-        <!--            <version>6.0.3.RELEASE</version>-->
-        <!--        </dependency>-->
-
-=======
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>org.mybatis.spring.boot</groupId>
-                <artifactId>mybatis-spring-boot-starter</artifactId>
-                <version>${mybatis.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>1.18.18</version>
-                <optional>true</optional>
-            </dependency>
-            <!-- https://mvnrepository.com/artifact/cglib/cglib -->
             <dependency>
                 <groupId>cglib</groupId>
                 <artifactId>cglib</artifactId>
@@ -113,18 +45,42 @@
                 <artifactId>netty-all</artifactId>
                 <version>4.1.60.Final</version>
             </dependency>
->>>>>>> 13ea3ff5621d8abef05c16c56cdcd329346c3805
-
             <dependency>
                 <groupId>org.apache.rocketmq</groupId>
                 <artifactId>rocketmq-client</artifactId>
                 <version>4.8.0</version>
             </dependency>
 
+            <!-- https://mvnrepository.com/artifact/org.apache.zookeeper/zookeeper -->
+            <dependency>
+                <groupId>org.apache.zookeeper</groupId>
+                <artifactId>zookeeper</artifactId>
+                <version>3.6.2</version>
+            </dependency>
+
+
+            <!--        <dependency>-->
+            <!--            <groupId>io.lettuce</groupId>-->
+            <!--            <artifactId>lettuce-core</artifactId>-->
+            <!--            <version>6.0.3.RELEASE</version>-->
+            <!--        </dependency>-->
+
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
                 <version>2.9.9.2</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.zookeeper</groupId>
+                <artifactId>zookeeper</artifactId>
+                <version>3.6.2</version>
             </dependency>
 
 
