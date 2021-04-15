@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: wealth
+  datasource:
+    username: live
+    password: admin
+    url: jdbc:mysql://192.168.163.184:3306/wealth?characterEncoding=utf8&useSLL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8000/eureka
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    auto-mapping-unknown-column-behavior: warning
+  mapper-locations: classpath:/mapper/**/*.xml
+server:
+  port: 8004
+tx-lcn:
+  client:
+    manager-address: 127.0.0.1:8070

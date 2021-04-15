@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dtx.lcn.wealth.dao.TWealthMapper">
+  <resultMap id="BaseResultMap" type="com.dtx.lcn.wealth.model.TWealth">
+    <!--@mbg.generated-->
+    <!--@Table t_wealth-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="wealth" jdbcType="INTEGER" property="wealth" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, wealth
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from t_wealth
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from t_wealth
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.dtx.lcn.wealth.model.TWealth" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_wealth (wealth)
+    values (#{wealth,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.dtx.lcn.wealth.model.TWealth" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into t_wealth
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="wealth != null">
+        wealth,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="wealth != null">
+        #{wealth,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dtx.lcn.wealth.model.TWealth">
+    <!--@mbg.generated-->
+    update t_wealth
+    <set>
+      <if test="wealth != null">
+        wealth = #{wealth,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dtx.lcn.wealth.model.TWealth">
+    <!--@mbg.generated-->
+    update t_wealth
+    set wealth = #{wealth,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
