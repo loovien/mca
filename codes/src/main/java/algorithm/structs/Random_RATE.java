@@ -138,7 +138,7 @@ public class Random_RATE {
 
     // ================================
     public static double doubleRandom() {
-        return Math.random(); // + Math.random();
+        return Math.random() / (double) 2 + Math.random() / (double) 2;
     }
 
 }
