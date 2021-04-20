@@ -10,12 +10,14 @@ public class SelectSort {
         }
         int tmp;
         for (int i = 0; i < data.length; i++) {
+            int min = i;
             for (int j = i + 1; j < data.length; j++) {
-                if (data[i] > data[j]) {
-                    tmp = data[j];
-                    data[j] = data[i];
-                    data[i] = tmp;
-                }
+                min = data[min] > data[j] ? j : min;
+            }
+            if (min != i) {
+                tmp = data[i];
+                data[i] = data[min];
+                data[min] = tmp;
             }
         }
     }
