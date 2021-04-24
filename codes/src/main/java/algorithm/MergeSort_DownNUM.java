@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class MergeSort_DownNUM {
     public static void main(String[] args) {
-        int[] data = {1, 2, 3, 4, 5, 3, 4};
+        int[] data = {1, 2, 3, 4, 5, 3,     4};
         int result = downCnt(data, 0, data.length - 1);
         System.out.println(result);
         System.out.println(Arrays.toString(data));

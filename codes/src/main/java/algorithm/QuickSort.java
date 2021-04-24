@@ -1,6 +1,7 @@
 package algorithm;
 
 import org.apache.commons.codec.BinaryDecoder;
+import sun.misc.Unsafe;
 
 import java.util.Arrays;
 
@@ -10,59 +11,54 @@ import java.util.Arrays;
  * @author luowen <loovien@163.com>
  */
 public class QuickSort {
+    private final static Unsafe unsafe = Unsafe.getUnsafe();
+
     public static void main(String[] args) {
-        int[] data = {1, 2, 3, 4, 3, 2, 5, 4, 10, 4, 2, 6};
-
-        int distValue = 4;
-        // int[] ints = netherlandsFlag(data, 0, data.length - 1, distValue);
-        process(data, 0, data.length - 1, distValue);
+        int[] data = {1, 2, 12, 4, 3, -1, 2, 5, 4, 10, 4, 2, 6};
+        process(data, 0, data.length - 1);
         System.out.println(Arrays.toString(data));
-
     }
 
-    private static void process(int[] data, int left, int right, int flag) {
-        if (data == null || data.length <= 0 || left >= right) {
+    private static void process(int[] data, int left, int right) {
+        if (left > right) {
             return;
         }
-        int[] result = netherlandsFlag(data, left, right);
-        if (result[0] <= 0) {
+        swap(data, left + (int) (Math.random() * (right - left + 1)), right);
+        int[] offset = netherlandFlags(data, left, right);
+        if (offset[0] < 0) {
             return;
         }
-        process(data, left, result[0] - 1, flag);
-        process(data, result[1] + 1, right, flag);
+        process(data, left, offset[0] - 1);
+        process(data, offset[1] + 1, right);
     }
 
-    private static int[] netherlandsFlag(int[] data, int left, int right) {
+    private static int[] netherlandFlags(int[] data, int left, int right) {
         if (left > right) {
             return new int[]{-1, -1};
         }
         if (left == right) {
             return new int[]{left, right};
         }
-        int cursorRight = right, cursorLeft = left - 1, cursor = left;
-        while (cursor < cursorRight) {
-            if (data[cursor] < data[right]) { // < flag
-                int tmp = data[cursor];
-                data[cursor] = data[cursorLeft + 1];
-                data[cursorLeft + 1] = tmp;
-                cursor++;
-                cursorLeft++;
-            } else if (data[cursor] == data[right]) { // == flag
-                cursor++;
-            } else { // > flag
-                int tmp = data[cursorRight];
-                data[cursorRight] = data[cursor];
-                data[cursor] = tmp;
-                cursorRight--;
+        int less = left - 1, index = left, more = right;
+
+        while (index < more) {
+            if (data[index] > data[right]) {
+                swap(data, index, --more);
+            } else if (data[index] == data[right]) {
+                index++;
+            } else {
+                swap(data, index++, ++less);
             }
         }
-        swap(data, cursorRight, right); // why
-        return new int[]{cursorLeft + 1, cursorRight};
+        swap(data, index, right);
+        return new int[]{less + 1, more};
     }
 
-    public static void swap(int[] data, int i, int j) {
+    private static void swap(int[] data, int i, int j) {
         int tmp = data[i];
         data[i] = data[j];
-        data[j] = data[i];
+        data[j] = tmp;
     }
+
+
 }
