@@ -51,17 +51,17 @@ public class QuickSortV1 {
         if (arr == null || arr.length < 2) {
             return;
         }
-        process(arr, 0, arr.length - 1);
+        quickSort(arr, 0, arr.length - 1);
     }
 
-    public static void process(int[] arr, int L, int R) {
+    public static void quickSort(int[] arr, int L, int R) {
         if (L >= R) {
             return;
         }
         //swap(arr, L + (int) (Math.random() * (R - L + 1)), R);
         int[] equalArea = netherlandsFlag(arr, L, R);
-        process(arr, L, equalArea[0] - 1);
-        process(arr, equalArea[1] + 1, R);
+        quickSort(arr, L, equalArea[0] - 1);
+        quickSort(arr, equalArea[1] + 1, R);
     }
 
     // 快排非递归版本需要的辅助类
@@ -173,4 +173,8 @@ public class QuickSortV1 {
         System.out.println("test end");
         System.out.println("测试" + testTime + "组是否全部通过：" + (succeed ? "是" : "否"));
     }
+
+
+
+
 }
