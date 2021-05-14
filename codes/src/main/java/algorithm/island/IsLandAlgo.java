@@ -41,8 +41,12 @@ public class IsLandAlgo {
         infect(data, i, j + 1);
     }
 
+
+
     public static void main(String[] args) {
+
         int[][] data = new int[5][5];
+
         data[0][0] = 1;
         data[0][1] = 1;
         data[0][3] = 1;
@@ -54,6 +58,13 @@ public class IsLandAlgo {
         data[1][4] = 1;
         data[2][4] = 1;
         data[3][4] = 1;
+
+        data = new int[3][3];
+        data[0][0] = 1;
+        data[0][1] = 1;
+        data[1][0] = 1;
+        data[1][1] = 1;
+        data[2][2] = 1;
 
         for (int[] datum : data) {
             System.out.println(Arrays.toString(datum));
