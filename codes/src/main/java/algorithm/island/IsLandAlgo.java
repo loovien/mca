@@ -1,6 +1,8 @@
 package algorithm.island;
 
-import java.util.Arrays;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * created 5/14/2021 11:05 AM
@@ -41,6 +43,26 @@ public class IsLandAlgo {
         infect(data, i, j + 1);
     }
 
+    private static void unionQuery(int[][] data) {
+
+        int numOfCity = Math.max(data.length, data[0].length);
+
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(0);
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        UnionQuery<Integer> integerUnionQuery = new UnionQuery<Integer>(list);
+        for (int i = 0; i < numOfCity; i++) {
+            for (int j = i + 1; j < numOfCity; j++) {
+                if (data[i][j] == 1) {
+                    integerUnionQuery.unionIt(i, j);
+                }
+            }
+        }
+        System.out.println(integerUnionQuery.getResult());
+    }
 
 
     public static void main(String[] args) {
@@ -59,22 +81,28 @@ public class IsLandAlgo {
         data[2][4] = 1;
         data[3][4] = 1;
 
-        data = new int[3][3];
-        data[0][0] = 1;
-        data[0][1] = 1;
-        data[1][0] = 1;
-        data[1][1] = 1;
-        data[2][2] = 1;
+//        data = new int[3][3];
+//        data[0][0] = 1;
+//        data[0][1] = 1;
+//        data[1][0] = 1;
+//        data[1][1] = 1;
+//        data[2][2] = 1;
+
 
         for (int[] datum : data) {
             System.out.println(Arrays.toString(datum));
         }
 
-        int circleNum = findCircleNum(data);
-        System.out.println(circleNum);
+        System.out.println("========= union solution ==================");
+        unionQuery(data);
+        System.out.println("========= union solution ==================");
+//
+//        int circleNum = findCircleNum(data);
+//        System.out.println(circleNum);
+//
+//        for (int[] datum : data) {
+//            System.out.println(Arrays.toString(datum));
+//        }
 
-        for (int[] datum : data) {
-            System.out.println(Arrays.toString(datum));
-        }
     }
 }
