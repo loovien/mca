@@ -28,6 +28,15 @@ public class LongSubSequence {
         return process(str1.toCharArray(), str2.toCharArray(), str1.length() - 1, str2.length() - 1);
     }
 
+    /**
+     * 暴力尝试
+     *
+     * @param str1 string1
+     * @param str2 string2
+     * @param i    string1 index
+     * @param j    string2 index
+     * @return int result
+     */
     protected static int process(char[] str1, char[] str2, int i, int j) {
         if (i == 0 && j == 0) {
             return str1[i] == str2[j] ? 1 : 0;
@@ -45,6 +54,13 @@ public class LongSubSequence {
 
     }
 
+    /**
+     * 动态规划
+     *
+     * @param str1 string1
+     * @param str2 string2
+     * @return int result
+     */
     protected static int dp(char[] str1, char[] str2) {
         int N = str1.length, M = str2.length;
         int[][] dp = new int[N][M];
