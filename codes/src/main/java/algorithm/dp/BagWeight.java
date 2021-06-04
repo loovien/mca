@@ -3,13 +3,11 @@ package algorithm.dp;
 public class BagWeight {
     public static void main(String[] args) {
 
-        System.out.println((int) '1' - (int)'0');
-
         int[] p1 = new int[]{2, 1, 1, 1, 2, 1};
         int[] p2 = new int[]{6, 1, 1, 3, 2, 100};
 
-        bagWeight(p1, p2, 3);
-        System.out.println(dp(p1, p2, 3));
+        bagWeight(p1, p2, 3); // 暴力递归
+        System.out.println(dp(p1, p2, 3)); // 动态规划
 
     }
 
@@ -22,12 +20,12 @@ public class BagWeight {
     }
 
     public static int calc(int[] w, int[] v, int index, int weight) {
-        if (index == w.length) {
+        if (index == w.length) { // 递归到了最后
             return 0;
         }
         int p1 = calc(w, v, index + 1, weight);
         int p2 = 0;
-        if (weight - w[index] >= 0) {
+        if (weight - w[index] >= 0) { // 背包没有超重了
             p2 = v[index] + calc(w, v, index + 1, weight - w[index]);
         }
         return Math.max(p1, p2);
@@ -38,7 +36,7 @@ public class BagWeight {
             return -1;
         }
         int length = w.length;
-        int[][] dp = new int[length + 1][bag + 1];
+        int[][] dp = new int[length + 1][bag + 1]; // 动态规划表
 
         for (int i = length - 1; i >= 0; i--) {
             for (int j = 0; j <= bag; j++) {
