@@ -1,7 +1,5 @@
 package algorithm;
 
-import java.util.HashSet;
-
 /**
  * created 6/5/2021 6:28 AM
  *
@@ -38,20 +36,20 @@ public class LongSubSequence {
      * @return int result
      */
     protected static int process(char[] str1, char[] str2, int i, int j) {
-        if (i == 0 && j == 0) {
+        if (i == 0 && j == 0) { // 尝试到str1, st2 的最后一个字符时候
             return str1[i] == str2[j] ? 1 : 0;
-        } else if (i == 0) {
+        } else if (i == 0) { // str1 先到了最后
             return str1[i] == str2[j] ? 1 : process(str1, str2, i, j - 1);
         }
-        if (j == 0) {
+        if (j == 0) { // str2 先到了最后
             return str1[i] == str2[j] ? 1 : process(str1, str2, i - 1, j);
         }
-        int p1 = process(str1, str2, i, j - 1);
-        int p2 = process(str1, str2, i - 1, j);
+        int p1 = process(str1, str2, i, j - 1); // str2 右移尝试
+        int p2 = process(str1, str2, i - 1, j); // str1 右移尝试
+        // 相等， 记录后同时右移
         int p3 = str1[i] == str2[j] ? (1 + process(str1, str2, i - 1, j - 1)) : 0;
-
+        // 返回最大的
         return Math.max(p1, Math.max(p2, p3));
-
     }
 
     /**
