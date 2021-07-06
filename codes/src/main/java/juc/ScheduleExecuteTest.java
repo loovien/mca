@@ -14,6 +14,8 @@ public class ScheduleExecuteTest {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
 
+        System.out.println(Integer.toBinaryString(823));
+
         ses.execute(() -> System.out.println(new Date()));
 
         ScheduledFuture<?> schedule = ses.schedule(() -> {
