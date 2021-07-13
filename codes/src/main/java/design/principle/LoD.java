@@ -1,4 +1,4 @@
-package design.lsr;
+package design.principle;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package design.lsr;
+package design.principle;
 
 import java.util.HashMap;
 import java.util.Map;
