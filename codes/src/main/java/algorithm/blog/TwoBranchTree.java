@@ -1,6 +1,5 @@
 package algorithm.blog;
 
-import javafx.scene.chart.StackedAreaChart;
 
 import java.util.Stack;
 
