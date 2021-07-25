@@ -1,7 +1,6 @@
 package algorithm;
 
 import org.apache.commons.codec.BinaryDecoder;
-import sun.misc.Unsafe;
 
 import java.util.Arrays;
 
@@ -11,7 +10,6 @@ import java.util.Arrays;
  * @author luowen <loovien@163.com>
  */
 public class QuickSort {
-    private final static Unsafe unsafe = Unsafe.getUnsafe();
 
     public static void main(String[] args) {
         int[] data = {1, 2, 12, 4, 3, -1, 2, 5, 4, 10, 4, 2, 6};

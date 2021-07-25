@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:luowen="http://www.example.com/schema/user"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.example.com/schema/user http://www.example.com/schema/user.xsd">
+
+    <luowen:user id="luowen" username="luowen" age="12"/>
+
+    <bean id="user" class="com.example.User">
+        <property name="age" value="10"/>
+        <property name="username" value="maomao"/>
+    </bean>
+
+</beans>

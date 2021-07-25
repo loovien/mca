@@ -17,6 +17,7 @@
         <module>codes</module>
         <module>mqtx</module>
         <module>dtx</module>
+        <module>ctag</module>
     </modules>
     <properties>
         <maven.build.targetEncoding>utf-8</maven.build.targetEncoding>

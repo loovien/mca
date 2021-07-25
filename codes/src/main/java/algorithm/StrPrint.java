@@ -9,13 +9,16 @@ import java.util.List;
  * @author luowen <loovien@163.com>
  */
 public class StrPrint {
-    public static void main(String[] args) {
-        String str = "luo";
-        char[] chars = str.toCharArray();
+    private StrPrint b = new StrPrint();
 
-        ArrayList<String> result = new ArrayList<>();
-        process1(chars, 0, "", result);
-        System.out.println(result);
+    public static void main(String[] args) {
+        new StrPrint();
+//        String str = "luo";
+//        char[] chars = str.toCharArray();
+//
+//        ArrayList<String> result = new ArrayList<>();
+//        process1(chars, 0, "", result);
+//        System.out.println(result);
     }
 
     private static void process1(char[] chars, int i, String s, List<String> result) {
@@ -27,5 +30,11 @@ public class StrPrint {
         process1(chars, i + 1, s + chars[i], result);
     }
 
+    public static class Demo {
+        Demo() {
+            Demo demo = new Demo();
+            System.out.println("==========" + demo);
+        }
+    }
 
 }
