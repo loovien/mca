@@ -1,4 +1,4 @@
-package com.example;
+package com.example.ctag;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.support.PropertiesLoaderUtils;

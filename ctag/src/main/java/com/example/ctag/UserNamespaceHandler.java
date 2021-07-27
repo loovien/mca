@@ -1,4 +1,4 @@
-package com.example;
+package com.example.ctag;
 
 import org.springframework.beans.factory.xml.NamespaceHandlerSupport;
 
